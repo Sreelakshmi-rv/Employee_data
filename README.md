@@ -1,49 +1,51 @@
-Employee Salary Analysis Script
+Data Cleaning Script
 
-Overview
-This Python script processes employee data from a CSV file, computes salary statistics, and outputs the results to a text file. The script performs the following tasks:
-1. Reads employee data from `emp_data_v2.csv`.
-2. Calculates:
-   - The average salary.
-   - The highest-paid employee.
-   - The number of employees per department.
-3. Saves the results to `results.txt`.
-4. Displays the highest-paid employee's details in the console.
+Overview:
+This Python script loads a dataset, performs data cleaning operations such as handling missing values, validating email addresses and phone numbers, removing duplicates, and filtering out outliers. The cleaned dataset is then saved as a CSV file.
 
-Prerequisites
+Prerequisites:
+Ensure you have the following installed on your system:
 - Python 3.x
-- A CSV file named `emp_data_v2.csv` containing the following columns:
-  - `id` (Employee ID)
-  - `name` (Employee Name)
-  - `department` (Department Name)
-  - `salary` (Employee Salary, numerical value)
+- Pandas library (`pip install pandas`)
+- NumPy library (`pip install numpy`)
 
-Installation
-1. Clone or download this repository.
-2. Ensure Python 3 is installed on your system.
-3. Place `emp_data_v2.csv` in the same directory as the script.
+Setup Instructions:
+1. Download the dataset: Place your `customers.csv` file in a known directory (e.g., `D:\Downloads\customers.csv`).
+2. Update the file paths: In the script, update the `file_path` and `final_cleaned_file_path` variables to match the location of your dataset and where you want to save the cleaned data.
 
-Usage
-Run the script using the command:
-```sh
-python script.py
-```
+Running the Script:
+1. Open a terminal or command prompt.
+2. Navigate to the directory where the script is saved using `cd` command.
+3. Run the script using:
+   ```sh
+   python script_name.py
+   ```
+   (Replace `script_name.py` with your actual script filename.)
 
-Output
-- The highest-paid employee's details will be printed in the console.
-- The results will be saved in `results.txt` in the following format:
+Expected Output:
+- The script will print information about the dataset, such as missing values, duplicate counts, and invalid emails/phone numbers.
+- After processing, a cleaned CSV file will be saved at the specified path (`D:\Downloads\customers_final.csv`).
+- The script will output:
+  - Initial dataset information
+  - Count of missing values before and after cleaning
+  - Number of duplicate records removed
+  - Count of invalid emails and phone numbers
+  - Number of outliers removed
+  - Confirmation message that the cleaned dataset has been saved.
+
+Troubleshooting:
+- ModuleNotFoundError: If you get an error about missing modules, install the required libraries using:
+  ```sh
+  pip install pandas numpy
   ```
-  Average Salary: <value>
-  Highest Salary: <value> (Employee Name)
-  Employees per Department:
-  <Department>: <Count>
-  ```
+- FileNotFoundError: Ensure the dataset path is correct and the file exists.
+- PermissionError: If the script fails to save the file, try running Python as an administrator or change the save location.
 
-Error Handling
-- If the CSV file is missing, an error message is displayed.
-- Invalid salary values are skipped.
-- If no valid employee records are found, the script exits with an appropriate message.
+Notes:
+- The script assumes phone numbers are 10 digits long and standardizes them to a format like `+1-XXXXXXXXXX`.
+- Invalid email addresses are marked as "Invalid".
+- The script filters out purchase amounts that are extreme outliers based on the IQR method.
+- You can modify the `standardize_phone` function if phone numbers follow different country formats.
 
-License
-This project is open-source and available for modification and distribution.
-
+License:
+This script is free to use and modify for personal or educational purposes.
